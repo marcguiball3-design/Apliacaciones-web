@@ -16,7 +16,7 @@
 
 [Texto del enlace]((https://portal.edu.gva.es/aules/)
 
-![Texto alternativo](ruta-o-url-de-la-imagen.png)
+![Texto alternativo](https://upload.wikimedia.org/wikipedia/commons/3/3e/Ferrari_LaFerrari_GIMS_2024_1X7A2272.jpg?utm_source=es.wikipedia.org&utm_campaign=index&utm_content=original)
 
 ```html
 <h1>Hola mundo</h1>
