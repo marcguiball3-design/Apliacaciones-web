@@ -1,4 +1,4 @@
-# Prueba
+# Prueba manejo GITHUB
 - Elemento1
 - Elemento2
 - Elemento3
@@ -8,7 +8,7 @@
 **Esto es negrita**
 *Esto es cursiva*
 ~~Esto está tachado~~
-[Texto del enlace](https://www.direccion-del-enlace.com)
+[Texto del enlace]((https://portal.edu.gva.es/aules/)
 ![Texto alternativo](ruta-o-url-de-la-imagen.png)
 ```html
 <h1>Hola mundo</h1>
