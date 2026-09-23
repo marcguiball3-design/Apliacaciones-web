@@ -1,12 +1,15 @@
 # Prueba manejo GITHUB
+
 - Elemento1
 - Elemento2
 - Elemento3
+
 1. Primer paso
 2. Segundo paso
 3. Tercer paso
 
 **Esto es negrita**
+
 *Esto es cursiva*
 ~~Esto está tachado~~
 [Texto del enlace]((https://portal.edu.gva.es/aules/)
