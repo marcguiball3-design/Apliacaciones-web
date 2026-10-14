@@ -47,9 +47,8 @@ Codename:       noble
 
 `lsb_release -a` muestra la distribución y la versión
 
-> 📸 **PON AQUÍ LA IMAGEN `e 1.png`** → `img/01-lsb-release.png`
 
-![Versión de Ubuntu](imagenes/"e 1.png")
+![Versión de Ubuntu](imagenes/e1.png)
 
 ---
 
@@ -62,13 +61,11 @@ apache2 -v
 
 `apt install apache2` descarga e instala el servidor web y las dependencias que necesita. `apache2 -v` muestra la versión instalada; en mi caso **Apache/2.4.58 (Ubuntu)** (se ve también en las cabeceras de las capturas posteriores).
 
-> 📸 **(Opcional, no tengo captura)** Salida de `apache2 -v`. Si la quieres, haz la captura y guárdala como `img/00-apache-version.png`.
 
 ❓ **¿Qué paquetes adicionales se han instalado como dependencias?**
 
-> ✏️ **COMPLÉTALO CON TU SALIDA DE `apt`.** En una instalación limpia de Ubuntu 24.04 suelen ser: `apache2-bin`, `apache2-data`, `apache2-utils` (herramientas como `ab` o `htpasswd`), `libapr1t64`, `libaprutil1t64`, `libaprutil1-dbd-sqlite3`, `libaprutil1-ldap` y `liblua5.4-0`. Copia la lista que te salga a ti en el terminal y explica que `apache2` es solo el paquete "meta" y que el binario real está en `apache2-bin`, los ficheros de datos en `apache2-data`, etc.
+ En una instalación limpia de Ubuntu 24.04 tengo: `apache2-bin`, `apache2-data`, `apache2-utils` , `libapr1t64`, `libaprutil1t64`, `libaprutil1-dbd-sqlite3`, `libaprutil1-ldap` y `liblua5.4-0`. 
 
----
 
 ## Apartado 3. Comprobación del funcionamiento
 
@@ -80,9 +77,7 @@ sudo systemctl status apache2
 
 El servicio aparece como **`active (running)`** y **`enabled`** (arranca solo con el sistema). Se ve el proceso principal (PID 2203) y los procesos hijo que atienden las peticiones.
 
-> 📸 **PON AQUÍ LA IMAGEN `e 2.png`** → `img/02-estado-apache.png`
-
-![Estado del servicio Apache](img/02-estado-apache.png)
+![Estado del servicio Apache](imagenes/e2.png)
 
 ### 3.2. Puertos en escucha
 
@@ -92,7 +87,6 @@ sudo ss -tulpn | grep apache2
 
 `ss` lista los sockets abiertos; filtrando por `apache2` compruebo que escucha en el puerto **80/TCP**.
 
-> 📸 **(Opcional, sin captura)** Salida de `ss -tulpn | grep apache2`.
 
 ### 3.3. Prueba desde terminal y navegador
 
@@ -102,9 +96,8 @@ curl -I http://localhost
 
 `curl -I` pide solo las cabeceras HTTP; una respuesta `HTTP/1.1 200 OK` indica que el servidor responde bien. Desde el navegador accedo a `http://192.168.56.16` y aparece la página *Apache2 Default Page – It works!*.
 
-> 📸 **PON AQUÍ LA IMAGEN `e 3.png`** → `img/03-pagina-defecto.png`
 
-![Página por defecto de Apache](img/03-pagina-defecto.png)
+![Página por defecto de Apache](imagenes/e3.png)
 
 ### 3.4. Firewall
 
@@ -115,7 +108,6 @@ sudo ufw allow 'Apache'
 
 `ufw status` indica si el cortafuegos está activo y `ufw allow 'Apache'` abre el puerto 80 usando el perfil que instala Apache.
 
-> 📸 **(Sin captura)** Si el firewall está inactivo, indícalo con la salida `Status: inactive`.
 
 ❓ **¿Diferencia entre los perfiles Apache, Apache Full y Apache Secure?**
 
@@ -129,7 +121,7 @@ sudo ufw allow 'Apache'
 
 ## Apartado 4. Comandos principales de administración
 
-| Comando | Función | Explicación con mis palabras |
+| Comando | Función | Explicación  |
 |---|---|---|
 | `sudo systemctl start apache2` | Inicia el servicio | Lo arranca si está parado |
 | `sudo systemctl stop apache2` | Detiene el servicio | La web deja de responder |
@@ -144,7 +136,7 @@ sudo ufw allow 'Apache'
 | `a2ensite` / `a2dissite` | Activa / desactiva sitios | Igual, en `sites-enabled` |
 | `a2enconf` / `a2disconf` | Activa / desactiva fragmentos de configuración | Igual, en `conf-enabled` |
 
-> 📸 **(Opcional)** Una captura probando `stop` / `start` y comprobando con `systemctl status`.
+
 
 ❓ **¿Cuándo conviene `reload` en lugar de `restart`?**
 
@@ -158,9 +150,7 @@ Cuando el servidor está en producción y solo he cambiado la configuración (po
 ls -l /etc/apache2/
 ```
 
-> 📸 **PON AQUÍ LA IMAGEN `e 4.png`** → `img/04-etc-apache2.png`
-
-![Contenido de /etc/apache2](img/04-etc-apache2.png)
+![Contenido de /etc/apache2](imagenes/e4.png)
 
 | Ruta | Descripción |
 |---|---|
@@ -183,9 +173,8 @@ ls -l /etc/apache2/sites-enabled/
 
 La salida muestra `000-default.conf -> ../sites-available/000-default.conf` (la `l` inicial y la flecha indican enlace simbólico).
 
-> 📸 **PON AQUÍ LA IMAGEN `e 5.png`** → `img/05-sites-enabled-symlinks.png`
 
-![Enlaces simbólicos en sites-enabled](img/05-sites-enabled-symlinks.png)
+![Enlaces simbólicos en sites-enabled](imagenes/e5.png)
 
 ❓ **¿Por qué Apache usa enlaces simbólicos entre `*-available` y `*-enabled`?**
 
@@ -209,9 +198,8 @@ echo "<h1>Servidor de Marcos</h1>" | sudo tee /var/www/html/index.html
 
 `echo` escribe el HTML y `tee` lo guarda en el fichero con permisos de root (una redirección `>` normal no funcionaría con `sudo`). Ahora la página por defecto muestra mi mensaje.
 
-> 📸 **PON AQUÍ LA IMAGEN `e 5.1 comando echo.png`** → `img/06-index-personalizado.png`
 
-![Página de inicio personalizada](img/06-index-personalizado.png)
+![Página de inicio personalizada](imagenes/e5.1.png)
 
 ### 6.2. Cambiar el puerto de escucha (8080)
 
