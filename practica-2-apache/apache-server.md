@@ -45,11 +45,11 @@ Release:        24.04
 Codename:       noble
 ```
 
-`lsb_release -a` muestra la distribución y la versión; compruebo así que trabajo con Ubuntu 24.04 LTS (*noble*), como pide la práctica.
+`lsb_release -a` muestra la distribución y la versión
 
 > 📸 **PON AQUÍ LA IMAGEN `e 1.png`** → `img/01-lsb-release.png`
 
-![Versión de Ubuntu](img/01-lsb-release.png)
+![Versión de Ubuntu](imagenes/"e 1.png")
 
 ---
 
