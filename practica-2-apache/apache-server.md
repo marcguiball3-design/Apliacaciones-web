@@ -213,9 +213,9 @@ curl -I http://localhost:8080
 
 Hay que cambiar el puerto en **dos sitios**: `ports.conf` (en qué puerto escucha Apache) y el `VirtualHost` (qué sitio atiende ese puerto). `configtest` devuelve `Syntax OK` (con el aviso del `ServerName`, que se arregla en el 6.3) y `curl -I` responde `HTTP/1.1 200 OK` en el puerto 8080. Al terminar, **devuelvo el puerto 80**.
 
-> 📸 **PON AQUÍ LA IMAGEN `e 6.png`** → `img/07-puerto-8080.png`
 
-![Cambio de puerto a 8080](img/07-puerto-8080.png)
+![Cambio de puerto a 8080](imagenes/e6.png)
+
 
 ### 6.3. Definir el nombre del servidor
 
@@ -227,9 +227,7 @@ sudo apache2ctl configtest
 ```
 
 Así desaparece el aviso *"Could not reliably determine the server's fully qualified domain name"* que se ve en la captura anterior: Apache ya sabe cómo se llama.
-
-> 📸 **(FALTA – haz esta captura)** `apache2ctl configtest` mostrando solo `Syntax OK` sin aviso. Guárdala como `img/06b-servername.png` y añádela aquí:
-> `![ServerName](img/06b-servername.png)`
+`
 
 ### 6.4. y 6.5. Cambiar el correo del administrador y personalizar el error 404
 
@@ -244,11 +242,8 @@ ErrorDocument 404 "Error 404: La pagina que buscas no existe."
 - `ServerAdmin`: correo que Apache muestra en algunas páginas de error.
 - `ErrorDocument 404 "..."`: texto que se muestra cuando se pide una página que no existe.
 
-> 📸 **PON AQUÍ LA IMAGEN `e 7.png`** → `img/08-serveradmin-errordocument.png`
 
-![ServerAdmin y ErrorDocument](img/08-serveradmin-errordocument.png)
-
-> 📸 **(FALTA – recomendable)** Captura del navegador en `http://192.168.56.16/noexiste` mostrando el mensaje de error 404 personalizado.
+![ServerAdmin y ErrorDocument](imagenes/e7.png)
 
 ---
 
@@ -263,13 +258,11 @@ ls /etc/apache2/mods-available/
 
 `-M` muestra los módulos cargados (*static* los compilados dentro de Apache, *shared* los cargados dinámicamente) y `mods-available` todos los que se pueden activar.
 
-> 📸 **PON AQUÍ LA IMAGEN `e 8.png`** → `img/09-apache2ctl-M.png`
 
-![Módulos cargados](img/09-apache2ctl-M.png)
+![Módulos cargados](imagenes/e8.png)
 
-> 📸 **PON AQUÍ LA IMAGEN `e 9.png`** → `img/10-mods-available.png`
 
-![Módulos disponibles](img/10-mods-available.png)
+![Módulos disponibles](imagenes/e9.png)
 
 Activo tres módulos y compruebo que están cargados:
 
@@ -283,9 +276,9 @@ apache2ctl -M | grep -E "rewrite|headers|ssl"
 
 Al activar `ssl`, `a2enmod` activa automáticamente su dependencia `socache_shmcb` (`mime` ya estaba activo). Hace falta **reiniciar** para que se carguen, y el `grep` confirma `headers_module`, `rewrite_module` y `ssl_module`.
 
-> 📸 **PON AQUÍ LA IMAGEN `e 10.png`** → `img/11-a2enmod.png`
 
-![Activación de módulos](img/11-a2enmod.png)
+
+![Activación de módulos](imagenes/e10.png)
 
 | Módulo | Función |
 |---|---|
