@@ -4,7 +4,7 @@
 |---|---|
 | **Alumno** | Marcos |
 | **Ciclo / Módulo** | Sistemas Microinformáticos y Redes (SMR) · Aplicaciones Web |
-| **Curso** | 20XX/20XX *(completa)* |
+| **Curso** | 2026/2027  |
 | **Fecha** | Septiembre–octubre de 2026 |
 | **Máquina** | `smr-web` · Ubuntu 24.04.5 LTS · IP `192.168.56.16` |
 
