@@ -376,8 +376,7 @@ sudo systemctl reload apache2
 apache2ctl -S
 ```
 
-> 📸 **(FALTA – OBLIGATORIA según el enunciado)** Captura de la salida de `apache2ctl -S`, donde se ven los dos virtual hosts por nombre. Guárdala como `img/15b-apache2ctl-S.png`:
-> `![apache2ctl -S](img/15b-apache2ctl-S.png)`
+> `![apache2ctl -S](imagenes/e21.png)`
 
 ### 8.4. Resolución de nombres
 
