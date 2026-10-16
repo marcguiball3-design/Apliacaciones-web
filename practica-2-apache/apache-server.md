@@ -300,9 +300,9 @@ sudo systemctl restart apache2
 apache2ctl -M | grep status
 ```
 
-> 📸 **(FALTA – haz esta captura)** `a2dismod status` + `apache2ctl -M | grep status` sin resultados.
 
-❓ **¿Qué ocurre si desactivas un módulo del que depende otro?**
+
+ **¿Qué ocurre si desactivas un módulo del que depende otro?**
 
 Apache avisa o falla: `a2dismod` suele advertir de que otros módulos dependen de él, y si queda alguna directiva del módulo apagado en la configuración, `configtest` da error (*Invalid command...*) y Apache puede no arrancar. Por eso hay que probar siempre con `apache2ctl configtest` antes de reiniciar.
 
@@ -322,9 +322,8 @@ echo "<h1>Bienvenido a SITIO 2</h1>" | sudo tee /var/www/sitio2/index.html
 
 Cada sitio tiene su propia carpeta y su propia página. En la captura se ve un fallo mío: al pegar el segundo `echo` se coló un carácter de control (`^[[200~`) y salió `command not found`; lo repetí y funcionó (ver *Problemas encontrados*).
 
-> 📸 **PON AQUÍ LA IMAGEN `e 11.png`** → `img/12-crear-sitios.png`
 
-![Creación de directorios y páginas](img/12-crear-sitios.png)
+![Creación de directorios y páginas](imagenes/e11.png)
 
 ### 8.2. Ficheros de configuración
 
@@ -333,9 +332,8 @@ sudo nano /etc/apache2/sites-available/sitio1.conf
 sudo nano /etc/apache2/sites-available/sitio2.conf
 ```
 
-> 📸 **PON AQUÍ LA IMAGEN `e 12.png`** → `img/13-nano-sitio2.png`
 
-![Abriendo sitio2.conf](img/13-nano-sitio2.png)
+![Abriendo sitio2.conf](imagenes/e12.png)
 
 Contenido de `sitio2.conf` (el de `sitio1.conf` es igual cambiando nombres y rutas):
 
@@ -363,11 +361,10 @@ Contenido de `sitio2.conf` (el de `sitio1.conf` es igual cambiando nombres y rut
 - `Require all granted`: permite el acceso a todos.
 - `ErrorLog` / `CustomLog`: logs propios de cada sitio.
 
-> 📸 **PON AQUÍ LA IMAGEN `e 13.png`** → `img/14-sitio2-conf.png`
 
-![Contenido de sitio2.conf](img/14-sitio2-conf.png)
 
-> 📸 **(FALTA – recomendable)** Captura del contenido de `sitio1.conf`.
+![Contenido de sitio2.conf](imagenes/e13.png)
+
 
 ### 8.3. Activar los sitios y desactivar el de por defecto
 
@@ -405,17 +402,17 @@ Cada nombre devuelve su propia página, aunque ambos van al mismo servidor y pue
 
 > 📸 **PON AQUÍ LA IMAGEN `e 16.png`** → `img/16-curl-sitios.png`
 
-![curl a los dos sitios](img/16-curl-sitios.png)
+![curl a los dos sitios](imagenes/e16.png)
 
 Desde el navegador, entrando por la IP (sin nombre) se sirve el **primer** virtual host cargado (`sitio1`, por orden alfabético), que actúa como sitio por defecto:
 
 > 📸 **PON AQUÍ LA IMAGEN `e 15.png`** → `img/15-sitio1-navegador.png`
 
-![Sitio 1 en el navegador](img/15-sitio1-navegador.png)
+![Sitio 1 en el navegador](imagenes/e15.png)
 
 > 📸 **(FALTA)** Captura del navegador con `http://sitio2.local` (si lo pruebas desde un equipo con el `hosts` modificado).
 
-❓ **¿Diferencia entre virtual hosts basados en nombre y en IP? ¿Cuál he usado?**
+**¿Diferencia entre virtual hosts basados en nombre y en IP? ¿Cuál he usado?**
 
 - **Basados en nombre:** varios sitios comparten IP y puerto; Apache elige según el nombre de la cabecera `Host` (`ServerName`). Es el más habitual y no gasta IPs.
 - **Basados en IP:** cada sitio tiene su propia IP y Apache elige por la IP a la que llega la petición.
