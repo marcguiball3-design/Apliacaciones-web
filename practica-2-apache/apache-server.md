@@ -376,7 +376,7 @@ sudo systemctl reload apache2
 apache2ctl -S
 ```
 
-> `![apache2ctl -S](imagenes/e21.png)`
+![apache2ctl -S](imagenes/e21.png)
 
 ### 8.4. Resolución de nombres
 
@@ -399,17 +399,14 @@ curl http://sitio2.local
 
 Cada nombre devuelve su propia página, aunque ambos van al mismo servidor y puerto: Apache decide según la cabecera `Host`.
 
-> 📸 **PON AQUÍ LA IMAGEN `e 16.png`** → `img/16-curl-sitios.png`
 
 ![curl a los dos sitios](imagenes/e16.png)
 
 Desde el navegador, entrando por la IP (sin nombre) se sirve el **primer** virtual host cargado (`sitio1`, por orden alfabético), que actúa como sitio por defecto:
 
-> 📸 **PON AQUÍ LA IMAGEN `e 15.png`** → `img/15-sitio1-navegador.png`
 
 ![Sitio 1 en el navegador](imagenes/e15.png)
 
-> 📸 **(FALTA)** Captura del navegador con `http://sitio2.local` (si lo pruebas desde un equipo con el `hosts` modificado).
 
 **¿Diferencia entre virtual hosts basados en nombre y en IP? ¿Cuál he usado?**
 
@@ -434,7 +431,7 @@ El proceso padre corre como `root` (necesita abrir el puerto 80) y los procesos 
 
 > 📸 **PON AQUÍ LA IMAGEN `e 17.png`** → `img/17-usuario-www-data.png`
 
-![Usuario de Apache y permisos iniciales](img/17-usuario-www-data.png)
+![Usuario de Apache y permisos iniciales](imagenes/e17.png)
 
 Aplico una política de permisos razonable:
 
@@ -446,7 +443,7 @@ sudo find /var/www/sitio1 -type f -exec chmod 644 {} \;
 
 > 📸 **PON AQUÍ LA IMAGEN `e 18.png`** → `img/18-chown-chmod.png`
 
-![chown y chmod](img/18-chown-chmod.png)
+![chown y chmod](imagenes/e18.png)
 
 Ahora provoco un error 403 quitando todos los permisos al `index.html`:
 
@@ -456,13 +453,13 @@ sudo chmod 000 /var/www/sitio1/index.html
 
 > 📸 **PON AQUÍ LA IMAGEN `e 19.png`** → `img/19-chmod-000.png`
 
-![chmod 000](img/19-chmod-000.png)
+![chmod 000](imagenes/e19.png)
 
 El navegador muestra **Forbidden – You don't have permission to access this resource**:
 
 > 📸 **PON AQUÍ LA IMAGEN `e 20.png`** → `img/20-error-403.png`
 
-![Error 403](img/20-error-403.png)
+![Error 403](imagenes/e20.png)
 
 Consulto el log para ver la causa:
 
@@ -494,85 +491,6 @@ sudo chmod 644 /var/www/sitio1/index.html
 
 ---
 
-## Apartado 10. Seguridad básica
-
-> ⚠️ **Este apartado no tiene capturas en lo que me has pasado, y el enunciado no detalla qué hacer.** Te dejo una propuesta estándar para que lo hagas y captures. Haz cada comando y guarda una captura en `img/` (p. ej. `img/21-...png`).
-
-### 10.1. Ocultar la versión de Apache
-
-```bash
-sudo nano /etc/apache2/conf-available/security.conf
-```
-
-```apache
-ServerTokens Prod
-ServerSignature Off
-```
-
-```bash
-sudo systemctl reload apache2
-curl -I http://localhost
-```
-
-Con `ServerTokens Prod` la cabecera `Server` solo dice `Apache` (sin versión ni sistema) y `ServerSignature Off` quita el pie de página con datos en las páginas de error. Así un atacante lo tiene más difícil para buscar vulnerabilidades de una versión concreta.
-
-> 📸 **(FALTA)** `curl -I` mostrando `Server: Apache`.
-
-### 10.2. Desactivar el listado de directorios
-
-Ya lo hice con `Options -Indexes` en los virtual hosts (apartado 8). Compruébalo creando una carpeta vacía dentro de `/var/www/sitio1/` y entrando por el navegador: debe dar 403 en vez de listar el contenido.
-
-> 📸 **(FALTA)** Captura de esa prueba.
-
-### 10.3. Firewall
-
-```bash
-sudo ufw allow 'Apache'
-sudo ufw status verbose
-```
-
-Solo se abre el puerto necesario (80, o `Apache Full` si hay HTTPS).
-
-> 📸 **(FALTA)** Captura de `ufw status`.
-
-### 10.4. Resumen de medidas
-
-| Medida | Qué evita |
-|---|---|
-| `ServerTokens Prod` / `ServerSignature Off` | Filtrar versión y SO |
-| `Options -Indexes` | Listados de directorios |
-| `AllowOverride None` | `.htaccess` no autorizados |
-| Permisos 755/644 y propietario `www-data` | Modificaciones no autorizadas |
-| Firewall `ufw` | Puertos innecesarios abiertos |
-| Desactivar módulos que no se usan (`a2dismod status`) | Reducir superficie de ataque |
-
----
-
-## Apartado 11. Diagnóstico de errores
-
-> ⚠️ **Tampoco hay capturas ni enunciado detallado de este apartado.** Te dejo la tabla de fallos habituales; si tu profesor te pidió provocar errores concretos, añade tus capturas.
-
-| Síntoma | Causa probable | Cómo diagnosticarlo | Solución |
-|---|---|---|---|
-| El servicio no arranca | Error de sintaxis en la configuración | `apache2ctl configtest`, `journalctl -xeu apache2` | Corregir el fichero indicado y recargar |
-| `Address already in use` | Otro servicio usa el puerto 80/8080 | `sudo ss -tulpn \| grep :80` | Parar el otro servicio o cambiar el puerto |
-| **403 Forbidden** | Permisos incorrectos o `Require` mal puesto | `tail /var/log/apache2/error.log`, `ls -l` | `chmod 644` / `755`, `chown www-data` |
-| **404 Not Found** | La ruta no existe / `DocumentRoot` mal | Revisar `DocumentRoot` y el log de accesos | Corregir ruta o crear el fichero |
-| Aviso `AH00558` (FQDN) | Falta `ServerName` global | `apache2ctl configtest` | `ServerName localhost` en `conf-available` |
-| Se ve el sitio equivocado | Virtual host no activo o `Host` mal | `apache2ctl -S`, `/etc/hosts` | `a2ensite` y revisar `ServerName` |
-| No accedo desde otro equipo | Firewall o IP incorrecta | `ufw status`, `ip a` | `ufw allow 'Apache'` |
-
-Comandos útiles de diagnóstico:
-
-```bash
-sudo systemctl status apache2
-sudo journalctl -xeu apache2
-sudo tail -f /var/log/apache2/error.log
-apache2ctl configtest
-apache2ctl -S
-```
-
-El caso del **403** ya lo provoqué y diagnostiqué de verdad en el apartado 9.
 
 ---
 
@@ -581,7 +499,7 @@ El caso del **403** ya lo provoqué y diagnostiqué de verdad en el apartado 9.
 ### Conclusiones
 
 Con esta práctica he aprendido a instalar y comprobar Apache2 en Ubuntu 24.04, a manejar el servicio con `systemctl` y a entender cómo se organiza su configuración (`available` / `enabled` con enlaces simbólicos). He alojado dos webs en un mismo servidor con virtual hosts por nombre, he activado módulos y he visto la importancia de los permisos y del usuario `www-data`.
-> ✏️ *Añade aquí 2–3 frases con tu opinión personal.*
+
 
 ### Problemas encontrados y cómo los resolví
 
@@ -591,7 +509,7 @@ Con esta práctica he aprendido a instalar y comprobar Apache2 en Ubuntu 24.04, 
 | Al pegar el `echo` del sitio 2 apareció `^[[200~echo: command not found` (carácter de pegado) | Escribí el comando de nuevo a mano y funcionó |
 | Al activar módulos no cambiaba nada | Hacía falta `systemctl restart apache2` |
 | Tras `chmod 000` el navegador mostraba 403 | Lo consulté en `error.log` y restauré con `chmod 644` |
-| ✏️ *Añade aquí cualquier otro problema real que hayas tenido* | |
+
 
 ---
 
