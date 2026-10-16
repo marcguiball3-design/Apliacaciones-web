@@ -62,7 +62,7 @@ apache2 -v
 `apt install apache2` descarga e instala el servidor web y las dependencias que necesita. `apache2 -v` muestra la versión instalada; en mi caso **Apache/2.4.58 (Ubuntu)** (se ve también en las cabeceras de las capturas posteriores).
 
 
-❓ **¿Qué paquetes adicionales se han instalado como dependencias?**
+ **¿Qué paquetes adicionales se han instalado como dependencias?**
 
  En una instalación limpia de Ubuntu 24.04 tengo: `apache2-bin`, `apache2-data`, `apache2-utils` , `libapr1t64`, `libaprutil1t64`, `libaprutil1-dbd-sqlite3`, `libaprutil1-ldap` y `liblua5.4-0`. 
 
@@ -109,7 +109,7 @@ sudo ufw allow 'Apache'
 `ufw status` indica si el cortafuegos está activo y `ufw allow 'Apache'` abre el puerto 80 usando el perfil que instala Apache.
 
 
-❓ **¿Diferencia entre los perfiles Apache, Apache Full y Apache Secure?**
+ **¿Diferencia entre los perfiles Apache, Apache Full y Apache Secure?**
 
 | Perfil | Puertos que abre | Uso |
 |---|---|---|
@@ -138,7 +138,7 @@ sudo ufw allow 'Apache'
 
 
 
-❓ **¿Cuándo conviene `reload` en lugar de `restart`?**
+ **¿Cuándo conviene `reload` en lugar de `restart`?**
 
 Cuando el servidor está en producción y solo he cambiado la configuración (por ejemplo un virtual host): `reload` relee los ficheros sin matar las conexiones activas, así nadie pierde una descarga o una sesión. `restart` es necesario cuando el cambio lo exige, por ejemplo al **activar o desactivar módulos** o cambiar los puertos de escucha.
 
@@ -176,7 +176,7 @@ La salida muestra `000-default.conf -> ../sites-available/000-default.conf` (la 
 
 ![Enlaces simbólicos en sites-enabled](imagenes/e5.png)
 
-❓ **¿Por qué Apache usa enlaces simbólicos entre `*-available` y `*-enabled`?**
+ **¿Por qué Apache usa enlaces simbólicos entre `*-available` y `*-enabled`?**
 
 Porque así puedo **activar o desactivar** un sitio, módulo o configuración creando o borrando un enlace, sin tocar ni perder el fichero original. Todo lo que he escrito queda guardado en `*-available`, y en `*-enabled` solo está lo que Apache carga realmente. Es rápido, reversible y evita duplicar ficheros (`a2ensite`/`a2dissite` solo gestionan esos enlaces).
 
@@ -429,7 +429,6 @@ ls -ld /var/www/sitio1 /var/www/sitio1/index.html
 
 El proceso padre corre como `root` (necesita abrir el puerto 80) y los procesos que atienden peticiones, como `www-data`. En `envvars` se ve `APACHE_RUN_USER=www-data` y `APACHE_RUN_GROUP=www-data`. Los ficheros que había creado con `sudo` pertenecen a `root:root` (`drwxr-xr-x` y `-rw-r--r--`).
 
-> 📸 **PON AQUÍ LA IMAGEN `e 17.png`** → `img/17-usuario-www-data.png`
 
 ![Usuario de Apache y permisos iniciales](imagenes/e17.png)
 
@@ -441,7 +440,7 @@ sudo find /var/www/sitio1 -type d -exec chmod 755 {} \;
 sudo find /var/www/sitio1 -type f -exec chmod 644 {} \;
 ```
 
-> 📸 **PON AQUÍ LA IMAGEN `e 18.png`** → `img/18-chown-chmod.png`
+
 
 ![chown y chmod](imagenes/e18.png)
 
@@ -451,13 +450,12 @@ Ahora provoco un error 403 quitando todos los permisos al `index.html`:
 sudo chmod 000 /var/www/sitio1/index.html
 ```
 
-> 📸 **PON AQUÍ LA IMAGEN `e 19.png`** → `img/19-chmod-000.png`
+
 
 ![chmod 000](imagenes/e19.png)
 
 El navegador muestra **Forbidden – You don't have permission to access this resource**:
 
-> 📸 **PON AQUÍ LA IMAGEN `e 20.png`** → `img/20-error-403.png`
 
 ![Error 403](imagenes/e20.png)
 
@@ -466,9 +464,6 @@ Consulto el log para ver la causa:
 ```bash
 sudo tail -n 5 /var/log/apache2/sitio1_error.log
 ```
-
-> 📸 **(FALTA – lo pide el enunciado)** Captura del log con la línea `AH01630: client denied by server configuration` / `Permission denied`. Guárdala como `img/20b-error-log-403.png`:
-> `![error.log](img/20b-error-log-403.png)`
 
 Después restauro los permisos:
 
