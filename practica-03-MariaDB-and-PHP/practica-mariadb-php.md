@@ -219,7 +219,6 @@ enabled
 
 ![Estado de MariaDB](imagenes/e6.png)
 
-> 📸 **PON AQUÍ LA IMAGEN 7** (captura de `systemctl is-enabled mariadb`) → `img/07-is-enabled-mariadb.png`
 
 ![MariaDB enabled](imagenes/e7.png)
 
