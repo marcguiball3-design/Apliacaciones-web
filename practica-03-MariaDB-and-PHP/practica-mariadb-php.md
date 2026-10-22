@@ -2,7 +2,7 @@
 
 - 👤 **Alumno:** Marcos
 - 🎓 **Ciclo / Módulo:** Sistemas Microinformáticos y Redes (SMR) · Aplicaciones Web
-- 📅 **Curso:** 20XX/20XX *(completa)*
+- 📅 **Curso:** 2026/2027 
 - 🗓️ **Fecha:** Octubre de 2026
 - 🖥️ **Máquina:** `smr-web` · Ubuntu 24.04 · Apache 2.4.58
 
@@ -23,13 +23,13 @@
 
 ---
 
-## 📚 Antes de empezar: qué es una base de datos
+##  Antes de empezar: qué es una base de datos
 
 Una **base de datos** es como un **archivador muy ordenado** donde un programa guarda su información para encontrarla y usarla rápido. Se organiza en:
 
-- 📋 **Tablas:** como las hojas de una hoja de cálculo.
-- 🏷️ **Columnas:** qué datos se guardan (nombre, fecha, etc.).
-- 📝 **Filas:** cada elemento guardado.
+-  **Tablas:** como las hojas de una hoja de cálculo.
+-  **Columnas:** qué datos se guardan (nombre, fecha, etc.).
+-  **Filas:** cada elemento guardado.
 
 **¿Para qué la necesita WordPress?** WordPress guarda en la base de datos **todo lo que no son ficheros**: las entradas, las páginas, los comentarios, los usuarios y la configuración del sitio. Cada vez que alguien visita la web, WordPress le pide los datos a la base de datos.
 
@@ -43,10 +43,10 @@ Navegador ──► Apache ──► PHP ──► MariaDB
                web)        WordPress)   datos)
 ```
 
-- **L** → **Linux** (Ubuntu 24.04): ✅ ya instalado.
-- **A** → **Apache**: ✅ ya instalado (práctica anterior).
-- **M** → **MariaDB**: 🆕 **lo instalo hoy**.
-- **P** → **PHP**: 🆕 **lo instalo hoy**.
+- **L** → **Linux** (Ubuntu 24.04):  ya instalado.
+- **A** → **Apache**:  ya instalado (práctica anterior).
+- **M** → **MariaDB**:  **lo instalo hoy**.
+- **P** → **PHP**:  **lo instalo hoy**.
 
 > [!NOTE]
 > Hoy instalo las dos piezas que faltan, **MariaDB** y **PHP**, para dejar el servidor listo para instalar WordPress en la siguiente práctica.
