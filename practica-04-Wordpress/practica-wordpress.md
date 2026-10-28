@@ -459,9 +459,9 @@ El servidor **no necesita interfaz gráfica** porque WordPress es una **web**: e
 
 Abro `http://192.168.56.16` y se ve mi sitio con el título **"Mi primer WordPress"**, con la entrada **"¡Hola, mundo!"** que WordPress crea por defecto.
 
-> 📸 **PON AQUÍ LA IMAGEN 15** (captura de la web pública) → `img/15-web-publica.png`
 
-![Web pública](img/15-web-publica.png)
+
+![Web pública](imagenes/e15.png)
 
 ### 6.2. El panel de administración
 
@@ -471,8 +471,8 @@ Abro `http://192.168.56.16/wp-admin` e inicio sesión con mi usuario.
 
 En el panel: **Entradas → Añadir nueva**. Escribo un título y un texto (mi nombre y la fecha), pulso **Publicar** y compruebo que **aparece en la web pública**.
 
-> 📸 **(FALTA – haz esta captura)** Tu **entrada de prueba publicada** visible en la web pública. Guárdala como `img/16-entrada-publicada.png` y añádela aquí:
-> `![Entrada publicada](img/16-entrada-publicada.png)`
+
+> `![Entrada publicada](imagenes/e16.png)`
 
 ### 6.4. ¿Dónde ha guardado WordPress mi entrada? En la base de datos
 
@@ -505,24 +505,23 @@ sudo mariadb wordpress -e "SHOW TABLES;"
 
 WordPress creó **12 tablas**, todas empiezan por `wp_`. Las más importantes:
 
-- 📄 **`wp_posts`** → guarda las **entradas y páginas**.
-- 👤 **`wp_users`** → guarda los **usuarios**.
-- ⚙️ **`wp_options`** → guarda la **configuración** del sitio.
+-  **`wp_posts`** → guarda las **entradas y páginas**.
+-  **`wp_users`** → guarda los **usuarios**.
+-  **`wp_options`** → guarda la **configuración** del sitio.
 
 El comando `mariadb wordpress -e "SHOW TABLES;"` entra en la base `wordpress`, ejecuta **una sola orden** (`-e`) y sale.
 
-> 📸 **PON AQUÍ LA IMAGEN 17** (captura de `SHOW TABLES`) → `img/17-show-tables.png`
 
-![SHOW TABLES](img/17-show-tables.png)
+![SHOW TABLES](imagenes/e17.png)
 
 ### 6.5. Dónde está cada cosa
 
-- 📁 **Los ficheros de WordPress** → `/var/www/html/`
-- 🔐 **La conexión con la base de datos** → `/var/www/html/wp-config.php` (**no se comparte nunca**: contiene la contraseña)
-- 🎨 **Temas, plugins e imágenes subidas** → `/var/www/html/wp-content/` (carpetas `themes`, `plugins` y `uploads`)
-- 📝 **Las entradas, usuarios y ajustes** → en la **base de datos** `wordpress` de MariaDB
+-  **Los ficheros de WordPress** → `/var/www/html/`
+-  **La conexión con la base de datos** → `/var/www/html/wp-config.php` (**no se comparte nunca**: contiene la contraseña)
+-  **Temas, plugins e imágenes subidas** → `/var/www/html/wp-content/` (carpetas `themes`, `plugins` y `uploads`)
+-  **Las entradas, usuarios y ajustes** → en la **base de datos** `wordpress` de MariaDB
 
-### ❓ Pregunta de reflexión
+###  Pregunta de reflexión
 
 **¿Dónde guarda WordPress las entradas que escribes: en ficheros del servidor o en la base de datos? ¿Cómo lo has comprobado?**
 
@@ -549,9 +548,9 @@ define( 'WP_SITEURL', 'http://' . $_SERVER['HTTP_HOST'] );
 
 Guardo con `Ctrl+O`, `Enter`, y salgo con `Ctrl+X`.
 
-> 📸 **PON AQUÍ LA IMAGEN 18** (captura de las dos líneas dentro de `wp-config.php`) → `img/18-wp-config-lineas.png`
 
-![Líneas en wp-config.php](img/18-wp-config-lineas.png)
+
+![Líneas en wp-config.php](imagenes/e18.png)
 
 Compruebo que no hay errores de sintaxis:
 
@@ -565,11 +564,10 @@ php -l /var/www/html/wp-config.php
 No syntax errors detected in /var/www/html/wp-config.php
 ```
 
-✅ `php -l` (*lint*) revisa la sintaxis del fichero PHP **sin ejecutarlo**. Recargo la web en el navegador y sigue funcionando.
+ `php -l` (*lint*) revisa la sintaxis del fichero PHP **sin ejecutarlo**. Recargo la web en el navegador y sigue funcionando.
 
-> 📸 **PON AQUÍ LA IMAGEN 19** (captura de `php -l`) → `img/19-php-l.png`
 
-![php -l](img/19-php-l.png)
+![php -l](imagenes/e19.png)
 
 > [!NOTE]
 > Estas dos líneas son cómodas para un **laboratorio**. En un servidor real se escribiría la **dirección fija** del sitio.
@@ -600,9 +598,9 @@ Contenido del fichero:
 
 `AllowOverride All` = Apache **sí** lee los ficheros `.htaccess` de esa carpeta.
 
-> 📸 **PON AQUÍ LA IMAGEN 20** (captura de `wordpress.conf` en nano) → `img/20-wordpress-conf.png`
 
-![wordpress.conf](img/20-wordpress-conf.png)
+
+![wordpress.conf](imagenes/e20.png)
 
 **Paso 2: activarlo.**
 
@@ -628,9 +626,8 @@ Syntax OK
 - `configtest` → comprueba la sintaxis (`Syntax OK`).
 - `restart apache2` → reinicia Apache para aplicar los cambios.
 
-> 📸 **PON AQUÍ LA IMAGEN 21** (captura de `a2enmod`, `a2enconf`, `configtest` y `restart`) → `img/21-a2enconf.png`
 
-![a2enmod y a2enconf](img/21-a2enconf.png)
+![a2enmod y a2enconf](imagenes/e21.png)
 
 **Paso 3: cambiar el formato en el panel de WordPress.**
 
@@ -638,15 +635,15 @@ Syntax OK
 
 Aparece el mensaje *"Estructura de enlaces permanentes actualizada"*.
 
-> 📸 **PON AQUÍ LA IMAGEN 22** (captura de Enlaces permanentes con "Nombre de la entrada" marcado) → `img/22-enlaces-permanentes.png`
 
-![Enlaces permanentes](img/22-enlaces-permanentes.png)
+
+![Enlaces permanentes](imagenes/e22.png)
 
 **Paso 4: comprobar que la dirección es "bonita".** Abro una página desde la portada y la dirección ahora es `http://192.168.56.16/pagina-ejemplo/` (en vez de `/?p=2`), y se ve correctamente.
 
-> 📸 **PON AQUÍ LA IMAGEN 23** (captura de la dirección "bonita" en el navegador) → `img/23-direccion-bonita.png`
 
-![Dirección bonita](img/23-direccion-bonita.png)
+
+![Dirección bonita](imagenes/e23.png)
 
 **Paso 5: comprobar que WordPress creó el `.htaccess` solo:**
 
@@ -654,8 +651,7 @@ Aparece el mensaje *"Estructura de enlaces permanentes actualizada"*.
 ls -la /var/www/html/.htaccess
 ```
 
-> 📸 **(FALTA – haz esta captura)** La salida de `ls -la /var/www/html/.htaccess`. Guárdala como `img/24-htaccess.png` y añádela aquí:
-> `![.htaccess](img/24-htaccess.png)`
+
 
 ### 8.2. Poder subir ficheros grandes
 
@@ -673,11 +669,11 @@ sudo systemctl restart apache2
 
 **Compruebo en el panel:** **Medios → Añadir nuevo** → indica *"Tamaño máximo de archivo: 64 MB"*.
 
-> 📸 **PON AQUÍ LA IMAGEN 25** (captura de Medios → Añadir nuevo con "Tamaño máximo de archivo: 64 MB") → `img/25-subida-64mb.png`
 
-![Tamaño máximo de subida](img/25-subida-64mb.png)
 
-### ❓ Pregunta de reflexión
+![Tamaño máximo de subida](imagenes/e25.png)
+
+###  Pregunta de reflexión
 
 **¿Por qué las direcciones "bonitas" dan error 404 si Apache no tiene permitido leer el fichero `.htaccess`?**
 
@@ -704,12 +700,11 @@ Error establishing a database connection
 > [!WARNING]
 > **"Error establishing a database connection"** = WordPress no puede hablar con MariaDB: o está **parado**, o el **usuario/contraseña** de `wp-config.php` no son correctos.
 
-> 📸 **(FALTA – haz esta captura)** El comando `sudo systemctl stop mariadb` en la terminal. Guárdala como `img/26-mariadb-stop.png` y añádela aquí:
-> `![Parar MariaDB](img/26-mariadb-stop.png)`
 
-> 📸 **PON AQUÍ LA IMAGEN 27** (captura del error en el navegador) → `img/27-error-bd-navegador.png`
 
-![Error de conexión con la base de datos](img/27-error-bd-navegador.png)
+
+
+![Error de conexión con la base de datos](imagenes/e27.png)
 
 Ahora **arranco** MariaDB de nuevo y compruebo que funciona:
 
@@ -722,16 +717,16 @@ systemctl is-active mariadb
 
 Recargo la web: **vuelve a funcionar**.
 
-> 📸 **PON AQUÍ LA IMAGEN 28** (captura de la web recuperada) → `img/28-web-recuperada.png`
 
-![Web recuperada](img/28-web-recuperada.png)
 
-### 🧭 Guía rápida cuando WordPress muestre ese error
+![Web recuperada](imagenes/e28.png)
+
+###  Guía rápida cuando WordPress muestre ese error
 
 1. ¿Está MariaDB en marcha? → `systemctl is-active mariadb` (si no, `sudo systemctl start mariadb`).
 2. ¿Siguen siendo correctos el usuario y la contraseña? → prueba a entrar con `mariadb -u wp_user -p wordpress`.
 
-### ❓ Pregunta de reflexión
+###  Pregunta de reflexión
 
 **Cuando WordPress muestra "Error al establecer una conexión con la base de datos", ¿qué dos cosas comprobarías y en qué orden?**
 
@@ -759,121 +754,20 @@ PHP 8.3.6 (cli) (built: Oct  7 2026 18:06:38) (NTS)
 (las 12 tablas wp_...)
 ```
 
-- ✅ Apache y MariaDB: `active`.
-- ✅ PHP 8.3.6.
-- ✅ **Un único sitio** activo: `000-default.conf`.
-- ✅ La base `wordpress` tiene sus **12 tablas**.
+-  Apache y MariaDB: `active`.
+-  PHP 8.3.6.
+-  **Un único sitio** activo: `000-default.conf`.
+-  La base `wordpress` tiene sus **12 tablas**.
 
-> 📸 **PON AQUÍ LA IMAGEN 29** (captura de los cuatro comandos de la comprobación final) → `img/29-comprobacion-final.png`
 
-![Comprobación final](img/29-comprobacion-final.png)
+![Comprobación final](imagenes/e29.png)
 
-### ✅ Estado final del servidor
+###  Estado final del servidor
 
-- ✅ **Linux:** Ubuntu 24.04 → instalado.
-- ✅ **Apache:** Apache2, con un único sitio → funcionando.
-- ✅ **MariaDB:** MariaDB 10.11, con la base `wordpress` → funcionando.
-- ✅ **PHP:** PHP 8.3 → funcionando.
-- ✅ **WordPress:** instalado en `/var/www/html` → funcionando y accesible desde el navegador.
+-  **Linux:** Ubuntu 24.04 → instalado.
+-  **Apache:** Apache2, con un único sitio → funcionando.
+-  **MariaDB:** MariaDB 10.11, con la base `wordpress` → funcionando.
+-  **PHP:** PHP 8.3 → funcionando.
+-  **WordPress:** instalado en `/var/www/html` → funcionando y accesible desde el navegador.
 
-### 🔐 Datos de acceso (sin contraseñas)
 
-- 🌐 **Dirección de la web:** `http://192.168.56.16`
-- 🛠️ **Panel de administración:** `http://192.168.56.16/wp-admin`
-- 👤 **Usuario administrador:** `Marcos`
-- 🔑 **Contraseña:** `********` *(guardada en privado)*
-
-> [!TIP]
-> Para terminar, hago una **instantánea (snapshot)** de la máquina virtual. Será mi **punto de partida seguro** para trabajar con WordPress.
-
-> 📸 **(Opcional)** Captura del snapshot en VirtualBox/VMware.
-
----
-
-## Conclusiones y problemas encontrados
-
-### 📝 Conclusiones
-
-Con esta práctica he completado la instalación de **WordPress sobre mi LAMP**:
-
-- He entendido que **WordPress es una web**: el servidor la prepara y el navegador la dibuja, por eso no hace falta interfaz gráfica en el servidor.
-- He aprendido a trabajar con **dos puertas**: SSH para administrar y HTTP para usar WordPress.
-- He creado una **base de datos y un usuario propios** para WordPress con permisos limitados, por seguridad.
-- He visto la importancia de los **permisos** (`www-data`, 755/644) y del `.htaccess` para las direcciones "bonitas".
-- He comprobado qué pasa cuando **MariaDB se para**: el error *"Error establishing a database connection"*.
-
-> ✏️ *Añade aquí 2–3 frases con tu opinión personal.*
-
-### ⚠️ Problemas encontrados y cómo los resolví
-
-**1. Aviso del `ServerName` en `configtest`**
-- ⚠️ Problema: Apache puede avisar de que no tiene un nombre de servidor global.
-- ✅ Solución: `echo "ServerName localhost" | sudo tee /etc/apache2/conf-available/servername.conf` y `sudo a2enconf servername`. *(En mi caso no apareció el aviso.)*
-
-**2. Seguía saliendo la página anterior en vez de WordPress**
-- ⚠️ Problema: el `index.html` de Apache tiene prioridad sobre `index.php`.
-- ✅ Solución: borrar `/var/www/html/index.html` antes de copiar WordPress.
-
-**3. Error de conexión con la base de datos (provocado a propósito)**
-- ⚠️ Problema: *Error establishing a database connection* al parar MariaDB.
-- ✅ Solución: `sudo systemctl start mariadb` y comprobar con `systemctl is-active mariadb`.
-
-> ✏️ *Añade aquí cualquier otro problema real que hayas tenido.*
-
----
-
-## 🎯 Chuleta rápida para el examen
-
-```bash
-# --- Conexión y comprobación ---
-hostname -I                                  # IP del servidor
-ssh usuario@IP_DEL_SERVIDOR                  # conectar por SSH (puerto 22)
-systemctl is-active apache2 mariadb          # ambos deben dar active
-
-# --- Apache: un único sitio ---
-sudo a2dissite sitio1.conf sitio2.conf       # desactivar sitios
-sudo a2ensite 000-default.conf               # activar el de por defecto
-sudo apache2ctl configtest                   # Syntax OK
-sudo systemctl reload apache2
-
-# --- Base de datos de WordPress (dentro de: sudo mariadb) ---
-CREATE DATABASE wordpress;
-CREATE USER 'wp_user'@'localhost' IDENTIFIED BY '********';
-GRANT ALL ON wordpress.* TO 'wp_user'@'localhost';
-
-# --- Descargar e instalar WordPress ---
-cd /tmp
-wget https://wordpress.org/latest.tar.gz
-tar -xzf latest.tar.gz
-sudo rm /var/www/html/index.html
-sudo cp -a /tmp/wordpress/. /var/www/html/
-rm -r /tmp/wordpress /tmp/latest.tar.gz
-
-# --- Permisos ---
-sudo chown -R www-data:www-data /var/www/html
-sudo find /var/www/html -type d -exec chmod 755 {} \;
-sudo find /var/www/html -type f -exec chmod 644 {} \;
-
-# --- Comprobar ---
-sudo mariadb wordpress -e "SHOW TABLES;"     # 12 tablas wp_
-php -l /var/www/html/wp-config.php           # No syntax errors detected
-```
-
-> [!IMPORTANT]
-> **Ideas clave para recordar:**
->
-> - **WordPress es una web:** el servidor la envía y el **navegador la dibuja**. Por eso no hace falta interfaz gráfica.
-> - **SSH (22)** = administrar. **HTTP (80)** = usar WordPress.
-> - **`a2dissite`** desactiva un sitio **sin borrar** sus ficheros.
-> - **`wp_user`** tiene permisos **solo sobre `wordpress`**, no sobre todo MariaDB (mínimo privilegio).
-> - **`www-data`** debe ser el propietario de `/var/www/html` para que WordPress pueda escribir.
-> - **Directorios 755, ficheros 644.** Nunca 777.
-> - **`wp-config.php`** contiene la contraseña de la BD: **nunca se comparte**.
-> - **Las entradas se guardan en la base de datos** (`wp_posts`), no en ficheros.
-> - **`AllowOverride All` + `rewrite`** = las direcciones "bonitas" funcionan; sin ello, error **404**.
-> - **"Error establishing a database connection"** = comprobar primero `systemctl is-active mariadb` y después el usuario/contraseña.
-> - **Nunca subas contraseñas a GitHub.**
-
----
-
-*Memoria enlazada desde el [README.md](README.md) del repositorio.*
