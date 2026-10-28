@@ -11,7 +11,7 @@
 
 ##  Índice
 
-0. [Antes de empezar: cómo usamos una herramienta gráfica en un servidor sin pantalla](#-antes-de-empezar-cómo-usamos-una-herramienta-gráfica-en-un-servidor-sin-pantalla)
+
 1. [Apartado 1. Conexión por SSH y comprobación del servidor](#apartado-1-conexión-por-ssh-y-comprobación-del-servidor)
 2. [Apartado 2. Dejar Apache con un único sitio](#apartado-2-dejar-apache-con-un-único-sitio)
 3. [Apartado 3. Crear la base de datos de WordPress](#apartado-3-crear-la-base-de-datos-de-wordpress)
