@@ -1,16 +1,16 @@
-# 🛠️ Práctica: Instalación de MariaDB y PHP en Ubuntu 24.04 (completando el LAMP)
+#  Práctica: Instalación de MariaDB y PHP en Ubuntu 24.04 
 
-- 👤 **Alumno:** Marcos Guillen B
-- 🎓 **Ciclo / Módulo:** Sistemas Microinformáticos y Redes (SMR) · Aplicaciones Web
-- 📅 **Curso:** 2026/2027 
-- 🗓️ **Fecha:** Octubre de 2026
-- 🖥️ **Máquina:** `smr-web` · Ubuntu 24.04 · Apache 2.4.58
+-  **Alumno:** Marcos Guillen B
+-  **Ciclo / Módulo:** Sistemas Microinformáticos y Redes (SMR) · Aplicaciones Web
+-  **Curso:** 2026/2027 
+-  **Fecha:** Octubre de 2026
+-  **Máquina:** `smr-web` · Ubuntu 24.04 · Apache 2.4.58
 
 ---
 
-## 📑 Índice
+##  Índice
 
-0. [Antes de empezar: qué es una base de datos](#-antes-de-empezar-qué-es-una-base-de-datos)
+
 1. [Apartado 1. Preparación del sistema](#apartado-1-preparación-del-sistema)
 2. [Apartado 2. Instalación de MariaDB](#apartado-2-instalación-de-mariadb)
 3. [Apartado 3. Comprobación del funcionamiento](#apartado-3-comprobación-del-funcionamiento)
@@ -18,39 +18,10 @@
 5. [Apartado 5. ¿Qué pasa si MariaDB está parado?](#apartado-5-qué-pasa-si-mariadb-está-parado)
 6. [Apartado 6. Instalación de PHP](#apartado-6-instalación-de-php)
 7. [Apartado 7. Comprobación final](#apartado-7-comprobación-final)
-8. [Chuleta](#chuleta-rápida-para-el-examen)
+
 
 ---
 
-##  Antes de empezar: qué es una base de datos
-
-Una **base de datos** es como un **archivador muy ordenado** donde un programa guarda su información para encontrarla y usarla rápido. Se organiza en:
-
--  **Tablas:** como las hojas de una hoja de cálculo.
--  **Columnas:** qué datos se guardan (nombre, fecha, etc.).
--  **Filas:** cada elemento guardado.
-
-**¿Para qué la necesita WordPress?** WordPress guarda en la base de datos **todo lo que no son ficheros**: las entradas, las páginas, los comentarios, los usuarios y la configuración del sitio. Cada vez que alguien visita la web, WordPress le pide los datos a la base de datos.
-
-**¿Qué es MariaDB?** Es el programa (el *gestor de bases de datos*) que **guarda los datos, los protege y responde a las peticiones**. Viene en los repositorios de Ubuntu y funciona muy bien con WordPress.
-
-### Cómo encaja todo: el LAMP
-
-```text
-Navegador ──► Apache ──► PHP ──► MariaDB
-(visitante)   (sirve la   (ejecuta    (guarda los
-               web)        WordPress)   datos)
-```
-
-- **L** → **Linux** (Ubuntu 24.04):  ya instalado.
-- **A** → **Apache**:  ya instalado (práctica anterior).
-- **M** → **MariaDB**:  **lo instalo hoy**.
-- **P** → **PHP**:  **lo instalo hoy**.
-
-> [!NOTE]
-> Hoy instalo las dos piezas que faltan, **MariaDB** y **PHP**, para dejar el servidor listo para instalar WordPress en la siguiente práctica.
-
----
 
 ## Apartado 1. Preparación del sistema
 
@@ -529,46 +500,6 @@ PHP 8.3.6 (cli) (built: Oct  7 2026 18:06:38) (NTS)
 
 ---
 
-## Conclusiones y problemas encontrados
-
-###  Conclusiones
-
-Con esta práctica he completado el **LAMP**: ya tengo **Linux, Apache, MariaDB y PHP** funcionando.
-
-- He aprendido para qué sirve cada pieza: **Apache sirve la web, PHP ejecuta el código y MariaDB guarda los datos**.
-- He aprendido a manejar el servicio con `systemctl`.
-- He aprendido a reconocer el error típico cuando MariaDB está parado: el **ERROR 2002**.
-- He visto que hay que **borrar `info.php`** después de usarlo por seguridad.
-
-
-##  Chuleta
-
-```bash
-# --- Servicio MariaDB ---
-sudo systemctl start mariadb       # arrancar
-sudo systemctl stop mariadb        # parar
-sudo systemctl restart mariadb     # reiniciar
-sudo systemctl status mariadb      # ver estado (salir con q)
-sudo systemctl enable mariadb      # arrancar solo al encender
-systemctl is-active mariadb        # ¿funciona ahora?  -> active / inactive
-systemctl is-enabled mariadb       # ¿arranca solo?    -> enabled / disabled
-
-# --- Instalación y comprobación ---
-sudo apt update && sudo apt upgrade -y
-sudo apt install mariadb-server -y
-mariadb --version
-sudo mariadb                       # entrar (exit para salir)
-
-sudo apt install php libapache2-mod-php php-mysql php-curl php-gd php-mbstring php-xml php-zip php-intl -y
-php -v
-sudo systemctl restart apache2
-sudo apache2ctl -M | grep -E "mpm|php"     # Apache con PHP
-php -m | grep -i mysql                     # PHP con MariaDB
-
-# --- Prueba de PHP (y borrarla después) ---
-echo '<?php phpinfo();' | sudo tee /var/www/html/info.php
-sudo rm /var/www/html/info.php
-```
 
 > [!IMPORTANT]
 > **Ideas clave para recordar:**
