@@ -50,9 +50,9 @@ hostname -I
 
 **Explicación:** `hostname -I` muestra **todas las direcciones IP** del servidor. La que uso para conectarme desde mi ordenador es **`192.168.56.16`**. (La `10.0.2.15` es la de otra interfaz de red de la máquina y la última es una dirección IPv6.)
 
-> 📸 **PON AQUÍ LA IMAGEN 1** (captura de `hostname -I`) → `img/01-hostname-ip.png`
 
-![hostname -I](img/01-hostname-ip.png)
+
+![hostname -I](imagenes/e1.png)
 
 ### 1.2. Conectarme por SSH desde mi ordenador
 
@@ -69,8 +69,8 @@ ssh marcos@192.168.56.16
 > [!NOTE]
 > `ssh usuario@IP` = "conéctame al servidor con IP *X* como el usuario *Y*". Por el puerto 22 viaja el texto de la terminal de forma cifrada.
 
-> 📸 **(FALTA – haz esta captura)** La conexión SSH desde tu ordenador (el comando `ssh marcos@192.168.56.16` y el prompt ya dentro del servidor). Guárdala como `img/02-ssh-conexion.png` y añádela aquí:
-> `![Conexión SSH](img/02-ssh-conexion.png)`
+
+> ![Conexión SSH](imagenes/e2.png)
 
 ### 1.3. Comprobar que todo lo anterior sigue funcionando
 
@@ -93,9 +93,9 @@ Zend Engine v4.3.6, Copyright (c) Zend Technologies
 - ✅ `active` dos veces → **Apache y MariaDB funcionan**.
 - ✅ **PHP 8.3.6** instalado.
 
-> 📸 **PON AQUÍ LA IMAGEN 3** (captura de `is-active apache2 mariadb` y `php -v`) → `img/03-comprobacion-inicial.png`
 
-![Comprobación inicial](img/03-comprobacion-inicial.png)
+
+![Comprobación inicial](imagenes/e3.png)
 
 ### ❓ Pregunta de reflexión
 
@@ -152,9 +152,8 @@ Syntax OK
 >
 > En mi caso **no apareció el aviso**: `configtest` mostró solo `Syntax OK`.
 
-> 📸 **PON AQUÍ LA IMAGEN 4** (captura de `a2dissite`, `a2ensite`, `configtest` y `reload`) → `img/04-a2dissite.png`
 
-![a2dissite y a2ensite](img/04-a2dissite.png)
+![a2dissite y a2ensite](imagenes/e4.png)
 
 ### 2.2. Comprobar que solo hay un sitio activo y qué carpeta usa
 
@@ -170,12 +169,12 @@ grep DocumentRoot /etc/apache2/sites-enabled/000-default.conf
         DocumentRoot /var/www/html
 ```
 
-- ✅ La primera orden muestra **solo** `000-default.conf` → hay **un único sitio activo**.
-- ✅ La segunda muestra `DocumentRoot /var/www/html` → la **carpeta** de la web es `/var/www/html`.
+-  La primera orden muestra **solo** `000-default.conf` → hay **un único sitio activo**.
+-  La segunda muestra `DocumentRoot /var/www/html` → la **carpeta** de la web es `/var/www/html`.
 
-> 📸 **PON AQUÍ LA IMAGEN 5** (captura de `ls sites-enabled` y `grep DocumentRoot`) → `img/05-sites-enabled-documentroot.png`
 
-![sites-enabled y DocumentRoot](img/05-sites-enabled-documentroot.png)
+
+![sites-enabled y DocumentRoot](imagenes/e5.png)
 
 ### 2.3. Comprobar que mi navegador llega al servidor
 
@@ -187,11 +186,11 @@ http://192.168.56.16
 
 Aparece la página que puse en la primera práctica: **"Servidor de Marcos"**. Ya **no** hace falta usar los nombres `sitio1.local` y `sitio2.local`.
 
-> 📸 **PON AQUÍ LA IMAGEN 6** (captura del navegador con `http://192.168.56.16`) → `img/06-pagina-servidor-marcos.png`
 
-![Página Servidor de Marcos](img/06-pagina-servidor-marcos.png)
 
-### ❓ Pregunta de reflexión
+![Página Servidor de Marcos](imagenes/e6.png)
+
+###  Pregunta de reflexión
 
 **¿Qué diferencia hay entre desactivar un sitio con `a2dissite` y borrar sus ficheros? ¿Por qué ahora ves la página por defecto de Apache y antes veías `sitio1`?**
 
@@ -204,9 +203,9 @@ Aparece la página que puse en la primera práctica: **"Servidor de Marcos"**. Y
 
 WordPress necesita un sitio donde guardarlo todo: una **base de datos de MariaDB**. Es como un **armario con una llave**:
 
-- 🗄️ **El armario** (base de datos) → se llama **`wordpress`**: donde WordPress guarda todos sus datos.
-- 🔑 **La llave** (usuario) → se llama **`wp_user`**: con lo que WordPress entra en el armario.
-- 🔒 **El permiso** → **todos, pero solo sobre `wordpress`**: esa llave abre ese armario y ningún otro.
+-  **El armario** (base de datos) → se llama **`wordpress`**: donde WordPress guarda todos sus datos.
+-  **La llave** (usuario) → se llama **`wp_user`**: con lo que WordPress entra en el armario.
+-  **El permiso** → **todos, pero solo sobre `wordpress`**: esa llave abre ese armario y ningún otro.
 
 > [!WARNING]
 > La contraseña de `wp_user` tiene mínimo **12 caracteres** y usa solo letras, números y guion bajo `_`. **Apúntala en un sitio privado**: la necesitaré en el instalador. En esta memoria aparece como `********`.
@@ -246,9 +245,8 @@ Después salgo con `exit`.
 > [!CAUTION]
 > En la captura **se ve la contraseña** dentro de la orden `CREATE USER`. **Tápala** (recuadro negro) antes de subir la imagen a GitHub.
 
-> 📸 **PON AQUÍ LA IMAGEN 7** (captura de `sudo mariadb` y las tres órdenes, **con la contraseña tapada**) → `img/07-crear-bd.png`
 
-![Crear base de datos y usuario](img/07-crear-bd.png)
+![Crear base de datos y usuario](imagenes/e7.png)
 
 ### 3.2. Comprobar que la llave funciona
 
@@ -269,16 +267,16 @@ Your MariaDB connection id is 33
 Server version: 10.11.14-MariaDB-0ubuntu0.24.04.1 Ubuntu 24.04
 ```
 
-✅ Entro sin errores: **la llave funciona**. Salgo con `exit`.
+ Entro sin errores: **la llave funciona**. Salgo con `exit`.
 
-> 📸 **PON AQUÍ LA IMAGEN 8** (captura de la entrada con `wp_user`) → `img/08-entrada-wp-user.png`
 
-![Entrada con wp_user](img/08-entrada-wp-user.png)
+
+![Entrada con wp_user](imagenes/e8.png)
 
 > [!TIP]
 > **Si te equivocas y quieres empezar de nuevo:** entra con `sudo mariadb` y ejecuta `DROP DATABASE wordpress;` y `DROP USER 'wp_user'@'localhost';`. Después repite las tres órdenes.
 
-### ❓ Pregunta de reflexión
+###  Pregunta de reflexión
 
 **¿Por qué WordPress usa su propio usuario `wp_user` con permiso solo sobre su base y no el usuario `root` de MariaDB?**
 
@@ -317,9 +315,9 @@ index.php   wp-activate.php   wp-admin   wp-config-sample.php   wp-content   wp-
 - `tar -xzf latest.tar.gz` → **descomprime** el fichero y crea la carpeta `wordpress`. Las opciones: `x` = extraer, `z` = fichero comprimido con gzip, `f` = el fichero que indico.
 - `ls wordpress` → lista el contenido: `index.php`, `wp-admin`, `wp-content`, `wp-config-sample.php`...
 
-> 📸 **PON AQUÍ LA IMAGEN 9** (captura de `wget`, `tar` y `ls wordpress`) → `img/09-wget-tar.png`
 
-![Descarga y descompresión](img/09-wget-tar.png)
+
+![Descarga y descompresión](imagenes/e9.png)
 
 ### 4.2. Colocarlo en la carpeta de mi sitio
 
@@ -336,7 +334,7 @@ ls /var/www/html
 index.php   license.txt   readme.html   wp-activate.php   wp-admin   wp-blog-header.php   wp-config-sample.php   wp-content   wp-includes   ...
 ```
 
-### ❓ Explica qué hace cada uno de los comandos que acabas de ejecutar
+###  Explica qué hace cada uno de los comandos que acabas de ejecutar
 
 - **`sudo rm /var/www/html/index.html`** → **borra la página de bienvenida** de Apache. Si no se borra, tendría **prioridad** sobre el `index.php` de WordPress y seguiría saliendo "Servidor de Marcos".
 - **`sudo cp -a /tmp/wordpress/. /var/www/html/`** → **copia todo el contenido** de WordPress a la carpeta web. La opción `-a` conserva permisos y atributos, y el `.` final del origen copia también los **ficheros ocultos**. Necesita `sudo` porque `/var/www/html` es de `root`.
@@ -348,9 +346,9 @@ Ahora WordPress está en `/var/www/html` y se verá en `http://192.168.56.16`.
 > [!NOTE]
 > Si el navegador sigue mostrando la página anterior ("Servidor de Marcos"), puede ser la **caché**. Se puede comprobar desde la terminal con `curl -I http://localhost`.
 
-> 📸 **PON AQUÍ LA IMAGEN 10** (captura de `rm`, `cp`, `rm -r` y `ls /var/www/html`) → `img/10-cp-rm.png`
 
-![Copia de WordPress a /var/www/html](img/10-cp-rm.png)
+
+![Copia de WordPress a /var/www/html](imagenes/e10.png)
 
 ### 4.3. Dar los permisos correctos
 
