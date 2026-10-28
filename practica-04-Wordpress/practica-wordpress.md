@@ -1,13 +1,11 @@
-# 🚀 Práctica: Instalación de WordPress en Ubuntu 24.04 (nuestro LAMP en marcha)
+#  Práctica: Instalación de WordPress en Ubuntu 24.04 (nuestro LAMP en marcha)
 
-- 👤 **Alumno:** Marcos
-- 🎓 **Ciclo / Módulo:** Sistemas Microinformáticos y Redes (SMR) · Aplicaciones Web
-- 📅 **Curso:** 20XX/20XX *(completa)*
-- 🗓️ **Fecha:** Octubre de 2026
-- 🖥️ **Máquina:** `smr-web` · Ubuntu 24.04 · IP `192.168.56.16`
+-  **Alumno:** Marcos
+-  **Ciclo / Módulo:** Sistemas Microinformáticos y Redes (SMR) · Aplicaciones Web
+-  **Curso:** 2026/2027 
+-  **Fecha:** Octubre de 2026
+-  **Máquina:** `smr-web` · Ubuntu 24.04 · IP `192.168.56.16`
 
-> [!CAUTION]
-> **Ninguna contraseña visible.** En toda esta memoria las contraseñas aparecen como `********`. Las capturas también deben tener las contraseñas **tapadas** antes de subirlas a GitHub.
 
 ---
 
@@ -29,27 +27,6 @@
 
 ---
 
-## 🍽️ Antes de empezar: cómo usamos una herramienta gráfica en un servidor sin pantalla
-
-Mi servidor Ubuntu **no tiene escritorio, ventanas ni ratón**: solo una terminal de texto. Entonces, ¿cómo uso WordPress, que es muy visual?
-
-👉 **WordPress no es un programa que se abra en el servidor: es una web.** Funciona como un restaurante:
-
-- 🍳 **La cocina** prepara los platos, pero el cliente no la ve → **el servidor** guarda y prepara WordPress, pero no dibuja nada.
-- 🪑 **El comedor** es donde el cliente ve y toca los platos → **el navegador de mi ordenador** es donde veo y uso WordPress.
-- 🧑‍🍳 **El camarero** lleva los platos de la cocina al comedor → **Apache** lleva las páginas del servidor al navegador.
-
-El servidor solo envía páginas web (texto con instrucciones de cómo dibujarlas) y **es mi navegador, en mi ordenador, el que las dibuja**. Por eso no hace falta interfaz gráfica en el servidor.
-
-### Las dos "puertas" para conectarme al servidor
-
-- 🔑 **SSH (puerto 22)** → sirve para **administrar** el servidor (instalar, copiar, configurar). Se usa con la **terminal** (`ssh`).
-- 🌐 **HTTP (puerto 80)** → sirve para **usar** WordPress (ver la web y el panel de control). Se usa con el **navegador**.
-
-### Qué hago en cada sitio
-
-- 💻 **En la terminal (por SSH):** preparar Apache, crear la base de datos, descargar WordPress, copiarlo a Apache y darle permisos.
-- 🖱️ **En el navegador:** terminar la instalación con un asistente gráfico (título, usuario y contraseña) y después trabajar con WordPress.
 
 ### ¿Qué es WordPress?
 
