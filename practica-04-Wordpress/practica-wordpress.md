@@ -9,7 +9,7 @@
 
 ---
 
-## 📑 Índice
+##  Índice
 
 0. [Antes de empezar: cómo usamos una herramienta gráfica en un servidor sin pantalla](#-antes-de-empezar-cómo-usamos-una-herramienta-gráfica-en-un-servidor-sin-pantalla)
 1. [Apartado 1. Conexión por SSH y comprobación del servidor](#apartado-1-conexión-por-ssh-y-comprobación-del-servidor)
@@ -90,14 +90,14 @@ Zend Engine v4.3.6, Copyright (c) Zend Technologies
     with Zend OPcache v8.3.6, Copyright (c), by Zend Technologies
 ```
 
-- ✅ `active` dos veces → **Apache y MariaDB funcionan**.
-- ✅ **PHP 8.3.6** instalado.
+-  `active` dos veces → **Apache y MariaDB funcionan**.
+-  **PHP 8.3.6** instalado.
 
 
 
 ![Comprobación inicial](imagenes/e3.png)
 
-### ❓ Pregunta de reflexión
+###  Pregunta de reflexión
 
 **¿Qué dos "puertas" (programas y puertos) usas para trabajar con el servidor en esta práctica y para qué sirve cada una?**
 
@@ -367,13 +367,12 @@ ls -ld /var/www/html
 drwxr-xr-x 5 www-data www-data 4096 oct  6 16:05 /var/www/html
 ```
 
-✅ El propietario y el grupo son **`www-data www-data`**.
+ El propietario y el grupo son **`www-data www-data`**.
 
-> 📸 **PON AQUÍ LA IMAGEN 11** (captura de `chown`, `chmod` y `ls -ld`) → `img/11-chown-chmod.png`
 
-![Permisos de WordPress](img/11-chown-chmod.png)
+![Permisos de WordPress](imagenes/e11.png)
 
-### ❓ Explica qué hace cada una de las órdenes. ¿Por qué hay que cambiar el propietario a `www-data`? ¿Qué podría fallar si siguiera siendo tu usuario?
+###  Explica qué hace cada una de las órdenes. ¿Por qué hay que cambiar el propietario a `www-data`? ¿Qué podría fallar si siguiera siendo tu usuario?
 
 - **`chown -R www-data:www-data /var/www/html`** → cambia el **propietario y el grupo** de la carpeta y **todo su contenido** (`-R` = recursivo) a `www-data`.
 - **`find ... -type d -exec chmod 755 {} \;`** → busca todos los **directorios** y les pone **755** (propietario: leer, escribir y entrar; resto: leer y entrar).
@@ -399,12 +398,12 @@ http://192.168.56.16
 
 Aparece el **asistente de instalación**. Los pasos:
 
-1. 🌍 **Idioma:** elijo **Español** y pulso *Continuar*.
-2. 👋 **Bienvenida:** pulso *¡Vamos a ello!*.
-3. 🗄️ **Datos de la base de datos:** relleno los campos y pulso *Enviar*.
-4. ✅ **Todo en orden:** pulso *Iniciar la instalación*.
-5. 📝 **Información necesaria:** relleno los datos del sitio y pulso *Instalar WordPress*.
-6. 🎉 **Éxito:** pulso *Iniciar sesión*.
+1.  **Idioma:** elijo **Español** y pulso *Continuar*.
+2.  **Bienvenida:** pulso *¡Vamos a ello!*.
+3.  **Datos de la base de datos:** relleno los campos y pulso *Enviar*.
+4.  **Todo en orden:** pulso *Iniciar la instalación*.
+5.  **Información necesaria:** relleno los datos del sitio y pulso *Instalar WordPress*.
+6.  **Éxito:** pulso *Iniciar sesión*.
 
 ### Pantalla 3: datos de la base de datos
 
@@ -414,9 +413,9 @@ Aparece el **asistente de instalación**. Los pasos:
 - **Servidor de la base de datos:** `localhost`
 - **Prefijo de tabla:** `wp_` (lo dejo como está)
 
-> 📸 **PON AQUÍ LA IMAGEN 12** (captura de la pantalla 3 del instalador) → `img/12-instalador-pantalla3.png`
 
-![Instalador - datos de la base de datos](img/12-instalador-pantalla3.png)
+
+![Instalador - datos de la base de datos](imagenes/e12.png)
 
 ### Pantalla 5: datos de mi sitio
 
@@ -429,9 +428,9 @@ Aparece el **asistente de instalación**. Los pasos:
 > [!CAUTION]
 > En esta captura **se ve la contraseña en claro y mi correo**. **Pulsa "Ocultar"** antes de hacer la captura, o **tapa** la contraseña (y el correo) con un recuadro negro.
 
-> 📸 **PON AQUÍ LA IMAGEN 13** (captura de la pantalla 5, **con la contraseña tapada**) → `img/13-instalador-pantalla5.png`
 
-![Instalador - datos del sitio](img/13-instalador-pantalla5.png)
+
+![Instalador - datos del sitio](imagenes/e13.png)
 
 ### Qué ha pasado por debajo
 
@@ -440,15 +439,15 @@ Aparece el **asistente de instalación**. Los pasos:
 
 Inicio sesión con el usuario y la contraseña que acabo de crear y veo el **escritorio de WordPress** (el panel de administración).
 
-> 📸 **(FALTA – haz esta captura)** El **escritorio de WordPress** una vez dentro (`http://192.168.56.16/wp-admin`). Guárdala como `img/14-escritorio-wordpress.png` y añádela aquí:
-> `![Escritorio de WordPress](img/14-escritorio-wordpress.png)`
 
-### ❓ Pregunta de reflexión
+> ![Escritorio de WordPress](imagenes/e14.png)
+
+###  Pregunta de reflexión
 
 **¿Qué partes de la instalación has hecho en la terminal y cuáles en el navegador? ¿Por qué el servidor no necesita tener interfaz gráfica?**
 
-- 💻 **En la terminal (SSH):** preparar Apache (un solo sitio), crear la base de datos y el usuario, descargar y descomprimir WordPress, copiarlo a `/var/www/html` y darle permisos.
-- 🖱️ **En el navegador:** el asistente de instalación (datos de la base de datos, título, usuario y contraseña) y el panel de administración.
+-  **En la terminal (SSH):** preparar Apache (un solo sitio), crear la base de datos y el usuario, descargar y descomprimir WordPress, copiarlo a `/var/www/html` y darle permisos.
+-  **En el navegador:** el asistente de instalación (datos de la base de datos, título, usuario y contraseña) y el panel de administración.
 
 El servidor **no necesita interfaz gráfica** porque WordPress es una **web**: el servidor solo envía páginas (texto) y es **el navegador de mi ordenador** el que las dibuja.
 
