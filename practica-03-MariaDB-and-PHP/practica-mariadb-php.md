@@ -500,18 +500,6 @@ PHP 8.3.6 (cli) (built: Oct  7 2026 18:06:38) (NTS)
 
 ---
 
-
-> [!IMPORTANT]
-> **Ideas clave para recordar:**
->
-> - **ERROR 2002** (`Can't connect to local server through socket`) = MariaDB **parado**.
-> - **`php-mysql`** = permite a PHP conectar con MariaDB. Sin él, WordPress no funciona.
-> - **`libapache2-mod-php`** = permite a Apache ejecutar PHP.
-> - **`info.php`** = se **borra siempre**: revela información sensible del servidor.
-> - **`start` / `stop`** = ahora. **`enable` / `disable`** = en el próximo arranque.
-> - **`update`** = actualiza la lista. **`upgrade`** = instala las actualizaciones.
-> - **LAMP** = Linux + Apache + MariaDB (MySQL) + PHP.
-
 ---
 
 *Memoria enlazada desde el [README.md](README.md) del repositorio.*
