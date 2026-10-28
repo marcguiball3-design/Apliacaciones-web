@@ -1,4 +1,4 @@
-#  Práctica: Instalación de WordPress en Ubuntu 24.04 (nuestro LAMP en marcha)
+#  Práctica: Instalación de WordPress en Ubuntu 24.04 
 
 -  **Alumno:** Marcos
 -  **Ciclo / Módulo:** Sistemas Microinformáticos y Redes (SMR) · Aplicaciones Web
@@ -22,8 +22,6 @@
 8. [Apartado 8. Dos ajustes para trabajar cómodamente](#apartado-8-dos-ajustes-para-trabajar-cómodamente)
 9. [Apartado 9. ¿Qué pasa si MariaDB se para?](#apartado-9-qué-pasa-si-mariadb-se-para)
 10. [Apartado 10. Comprobación final](#apartado-10-comprobación-final)
-11. [Conclusiones y problemas encontrados](#conclusiones-y-problemas-encontrados)
-12. [Chuleta rápida para el examen](#-chuleta-rápida-para-el-examen)
 
 ---
 
